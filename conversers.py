@@ -74,6 +74,10 @@ class AttackLLM():
         
         assert len(convs_list) == len(prompts_list), "Mismatch between number of conversations and prompts."
         
+        if not convs_list:
+            print("Warning: Empty convs_list passed to get_attack. Returning empty output list.")
+            return []
+        
         batchsize = len(convs_list)
         indices_to_regenerate = list(range(batchsize))
         valid_outputs = [None] * batchsize
