@@ -279,12 +279,7 @@ if __name__ == '__main__':
         help = "Maximum number of attack generation attempts, in case of generation errors."
     )
 
-    parser.add_argument(
-        "--attack-path",
-        type = str,
-        default = "",
-        help = "Path to the attack model, if using a local model."
-    )
+    
     ##################################################
 
     ########### Target model parameters ##########
@@ -310,12 +305,7 @@ if __name__ == '__main__':
         default = 150,
         help = "Maximum number of generated tokens for the target."
     )
-    parser.add_argument(
-        "--target-path",
-        type = str,
-        default = "",
-        help = "Path to the target model, if using a local model."
-    )
+
     ##################################################
 
     ############ Evaluator model parameters ##########

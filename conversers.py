@@ -266,7 +266,8 @@ def get_model_path_and_template(model_name):
             "path": "gpt-3.5-turbo",
             "template":"gpt-3.5-turbo"
         },
-        "vicuna":{
+        # "vicuna":{
+        "meta-llama/Llama-2-7b-chat-hf":{
             "path": "meta-llama/Llama-2-7b-chat-hf",
             "template":"vicuna_v1.1"
         },
