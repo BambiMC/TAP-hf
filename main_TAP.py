@@ -12,12 +12,15 @@ import common
 
 def clean_attacks_and_convs(attack_list, convs_list):
     """
-        Remove any failed attacks (which appear as None) and corresponding conversations
+    Remove any failed attacks (which appear as None) and corresponding conversations
     """
     tmp = [(a, c) for (a, c) in zip(attack_list, convs_list) if a is not None]
-    tmp = [*zip(*tmp)]
-    attack_list, convs_list = list(tmp[0]), list(tmp[1])
+    
+    if not tmp:
+        return [], []
 
+    tmp = list(zip(*tmp))
+    attack_list, convs_list = list(tmp[0]), list(tmp[1])
     return attack_list, convs_list
 
 def prune(on_topic_scores=None,
