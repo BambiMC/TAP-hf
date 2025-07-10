@@ -53,13 +53,24 @@ def prune(on_topic_scores=None,
 
     def get_first_k(list_):
         width = min(attack_params['width'], len(list_))
-        
+
+        if len(list_) == 0:
+            return []
+
+        if len(shuffled_scores) == 0:
+            return []
+
         truncated_list = [list_[shuffled_scores[i][1]] for i in range(width) if shuffled_scores[i][0] > 0]
 
         # Ensure that the truncated list has at least two elements
-        if len(truncated_list ) == 0:
-            truncated_list = [list_[shuffled_scores[0][0]], list_[shuffled_scores[0][1]]] 
-        
+        if len(truncated_list) < 2:
+            if len(shuffled_scores) >= 2:
+                truncated_list = [list_[shuffled_scores[0][1]], list_[shuffled_scores[1][1]]]
+            elif len(shuffled_scores) == 1:
+                truncated_list = [list_[shuffled_scores[0][1]]]
+            else:
+                truncated_list = []
+
         return truncated_list
 
     # Prune the brances to keep 
@@ -77,6 +88,8 @@ def prune(on_topic_scores=None,
     improv_list = get_first_k(improv_list)
     convs_list = get_first_k(convs_list)
     extracted_attack_list = get_first_k(extracted_attack_list)
+
+    print(f"Extracted {len(extracted_attack_list)} attacks; sample: {extracted_attack_list[:1]}", flush=True)
 
     return on_topic_scores,\
             judge_scores,\
