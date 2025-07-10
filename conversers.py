@@ -3,7 +3,8 @@ import common
 from language_models import GPT, PaLM, HuggingFace, APIModelLlama7B, APIModelVicuna13B, GeminiPro
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from config import VICUNA_PATH, LLAMA_PATH, ATTACK_TEMP, TARGET_TEMP, ATTACK_TOP_P, TARGET_TOP_P, MAX_PARALLEL_STREAMS 
+# from config import VICUNA_PATH, LLAMA_PATH, ATTACK_TEMP, TARGET_TEMP, ATTACK_TOP_P, TARGET_TOP_P, MAX_PARALLEL_STREAMS 
+from config import ATTACK_TEMP, TARGET_TEMP, ATTACK_TOP_P, TARGET_TOP_P, MAX_PARALLEL_STREAMS 
 
 def load_target_model(args):
     target_llm = TargetLLM(model_name = args.target_model, 
@@ -266,7 +267,7 @@ def get_model_path_and_template(model_name):
             "template":"gpt-3.5-turbo"
         },
         "vicuna":{
-            "path": VICUNA_PATH,
+            "path": "meta-llama/Llama-2-7b-chat-hf",
             "template":"vicuna_v1.1"
         },
         "vicuna-api-model":{
@@ -274,7 +275,7 @@ def get_model_path_and_template(model_name):
             "template": "vicuna_v1.1"
         },
         "llama-2":{
-            "path": LLAMA_PATH,
+            "path": "meta-llama/Llama-2-7b-chat-hf",
             "template":"llama-2"
         },
         "llama-2-api-model":{

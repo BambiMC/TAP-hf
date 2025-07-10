@@ -258,13 +258,13 @@ if __name__ == '__main__':
         "--attack-model",
         default = "vicuna",
         help = "Name of attacking model.",
-        choices=["vicuna", 
-                 "vicuna-api-model", 
-                 "gpt-3.5-turbo", 
-                 "gpt-4", 
-                 "gpt-4-turbo", 
-                 "gpt-4-1106-preview", # This is same as gpt-4-turbo
-                 'llama-2-api-model']
+        # choices=["vicuna", 
+        #          "vicuna-api-model", 
+        #          "gpt-3.5-turbo", 
+        #          "gpt-4", 
+        #          "gpt-4-turbo", 
+        #          "gpt-4-1106-preview", # This is same as gpt-4-turbo
+        #          'llama-2-api-model']
     )
     parser.add_argument(
         "--attack-max-n-tokens",
@@ -278,6 +278,13 @@ if __name__ == '__main__':
         default = 5,
         help = "Maximum number of attack generation attempts, in case of generation errors."
     )
+
+    parser.add_argument(
+        "--attack-path",
+        type = str,
+        default = "",
+        help = "Path to the attack model, if using a local model."
+    )
     ##################################################
 
     ########### Target model parameters ##########
@@ -285,23 +292,29 @@ if __name__ == '__main__':
         "--target-model",
         default = "vicuna",
         help = "Name of target model.",
-        choices=["llama-2",
-                 'llama-2-api-model', 
-                 "vicuna",
-                 'vicuna-api-model', 
-                 "gpt-3.5-turbo", 
-                 "gpt-4",
-                 'gpt-4-turbo', 
-                 'gpt-4-1106-preview', # This is same as gpt-4-turbo
-                 "palm-2",
-                 "gemini-pro",
-                 ]
+        # choices=["llama-2",
+        #          'llama-2-api-model', 
+        #          "vicuna",
+        #          'vicuna-api-model', 
+        #          "gpt-3.5-turbo", 
+        #          "gpt-4",
+        #          'gpt-4-turbo', 
+        #          'gpt-4-1106-preview', # This is same as gpt-4-turbo
+        #          "palm-2",
+        #          "gemini-pro",
+        #          ]
     )
     parser.add_argument(
         "--target-max-n-tokens",
         type = int,
         default = 150,
         help = "Maximum number of generated tokens for the target."
+    )
+    parser.add_argument(
+        "--target-path",
+        type = str,
+        default = "",
+        help = "Path to the target model, if using a local model."
     )
     ##################################################
 
